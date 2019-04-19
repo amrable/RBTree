@@ -14,6 +14,6 @@ public class Node {
         content=value;
         left=l;
         right=r;
-        color=1;
+        color=0;
     }
 }
