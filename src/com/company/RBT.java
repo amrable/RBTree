@@ -57,4 +57,37 @@ public class RBT {
         y.right=target;
         target.parent=y;
     }
+
+    public void insert(String data)
+    {
+        data=data.toLowerCase();                //All data should be lower case, [ compareTo ] method is case sensitive
+        Node newNode=new Node(data);
+
+        if (header == nullNode) header=newNode;
+        else
+        {
+            Node temp=header,prev=nullNode;
+            while (temp!=nullNode)
+            {
+                prev=temp;                                                           //the prev node holds the future parent of the new node
+                if (newNode.content.compareTo(temp.content)>0) temp=temp.right;      //TEMP < NEW NODE
+                else if (newNode.content.compareTo(temp.content)<0)temp=temp.left;   //NEW NODE < TEMP
+                else System.out.println("Failed to insert - Duplicate\n");
+            }
+            newNode.parent=prev;
+            // NEW NODE > PREV
+            if (newNode.content.compareTo(prev.content)>0) prev.right=newNode;
+            // PREV > NEW NODE
+            else prev.left=newNode;
+        }
+        newNode.left=newNode.right=nullNode;
+        newNode.color=RED;
+
+        insertFix(newNode);
+    }
+
+    public void insertFix(Node n)
+    {
+
+    }
 }
